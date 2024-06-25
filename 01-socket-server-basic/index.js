@@ -14,9 +14,12 @@ app.use(express.static(__dirname + '/public'))
 
 io.on('connection', (socket) => {
     console.log('Cliente conectado - ', socket.id);
-    socket.emit('mensaje-bienvenida', {
-        msg: 'Bienvenido al server',
-        fecha: new Date()
+    socket.on('mensaje-to-server', (data) => {
+        //Cuando utilizo Socket emite solo al id al que se conectó el nuevo cliente
+        // socket.emit('mensaje-from-server', data)
+
+        //Si quiero enviar a todos los clientes, debo utilizar io.emit
+        io.emit('mensaje-from-server', data) //envía a un Namespace
     })
 })
 
