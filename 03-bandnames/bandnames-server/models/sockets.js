@@ -15,14 +15,10 @@ class Sockets {
         // On connection
         this.io.on('connection', (socket) => {
 
-            // Escuchar evento: mensaje-to-server
-            socket.on('mensaje-to-server', (data) => {
-                console.log(data);
+            console.log('cliente connectado');
 
-                this.io.emit('mensaje-from-server', data);
-            });
-
-
+            //Emitir al cliente conectado, todas las bandas actuales
+            socket.emit('current-bands', this.bandList.getBands())
         });
     }
 

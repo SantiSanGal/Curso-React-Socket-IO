@@ -23,8 +23,9 @@
         // socket.emit('mensaje-to-server', { data });
         
         // Para escuchar
-        socket.on('mensaje-from-server', (data) => {
+        socket.on('current-bands', (data) => {
             // callback a ejecutar
+            console.log('data', data);
         });
         
 
